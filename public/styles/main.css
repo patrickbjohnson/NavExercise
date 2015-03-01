@@ -4,40 +4,38 @@
 /*=== Body Styles ===*/
 body {
   /*background: #ec008c;*/
-  color: #fff;
+  color: #000;
   font-family: "Galaxie";
 }
-
-
 
 /*=== Typography Styles ===*/
 h1 {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  margin: 0;
-  font: 20vmin/1 HUGEAvantGardeBold;
+  font: 44px/48px HUGEAvantGardeBold;
   letter-spacing: -0.06em;
-  text-align: center;
+  text-align: left; 
+  color: #000;
+  padding: 308px 22px 0;
+  white-space: pre-line;
 }
 
+.mobile {display: block;}
 .desktop {display: none;}
-
-.nav {
-  position: relative;
-  display: block;
-  min-height: 60px;
-  background: #ec008c;
-  z-index: 1;
+.logo {
+  width: 60px; 
+  height: 24px;
+  position: absolute;
+  margin: 20px 0 20px 24px;
+  left: -100%;
 }
+.logo img {width: 100%;}
+
 
 .menu {
   display: inline-block;
   width: 24px;
   height: 20px;
-  margin: 20px 0 20px 24px;
+  margin: 20px;
 }
 .menu span {
   position: relative;
@@ -60,40 +58,43 @@ h1 {
 .menu span:before {top: 8px;}
 .menu span:after {bottom: 8px;}
 
+.nav {
+  display: block;
+  position: relative;
+  background: #ec008c;
+  height: 60px;
+  z-index: 1;
+}
+
 
 .nav-main {
   display: block;
-  background: #fff;
+  /*display: none;*/
+  position: relative;
+  width: 288px;
+  /*left: -100%;*/
   padding: 12px 0;
-}
-.nav-main a {
-  display: block;
-  
-  font-family: "HUGEAvantGardeBold", sans-serif;
-  color: #fff;
-  text-decoration: none;
-  font-size: 21px;
-  line-height: 48px;
-  padding: 0 24px;
+  background: #fff;
 }
 
-.nav-main li a {
+.nav-main a {
+  display: block;
+  white-space: nowrap;
   color: #000;
+  line-height: 48px;
+  text-decoration: none;
+  padding: 0 24px;
 }
 
 .nav-main a:hover {
   background: #eee;
 }
 
-.nav-main--sub {
-  height: 0;
-  visibility: hidden;
+.nav-main > li > a {
+  font-family: "HUGEAvantGardeBold", sans-serif;
+  font-size: 21px;
 }
-.nav-main--sub a {
-  font-family: "Galaxie", serif;
-  font-size: 16px;
-  line-height: 48px;
-}
+
 .nav-main--sub a:hover {
   color: #ec008c;
 }
@@ -109,11 +110,68 @@ h1 {
   background: url('/images/arrow.svg') no-repeat;
 }
 
+.main-header {
+  min-height: 260px;
+  background: url('/images/background-image.jpg') center no-repeat;
+  background-size: cover;
+}
+.main-content {
+  margin-top: 176px;
+  padding: 0 24px;
+  font: 14px/24px "Galaxie";
+}
 
 
-/*=== Tablet/Desktop Display ===*/
 
-@media (min-width: 768px) {
-  .mobile {display: none;}
+
+/*=== Desktop Styles ===*/
+
+@media (min-width: 768px){
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 860px;
+    padding: 0;
+    font: 120px/132px HUGEAvantGardeBold;
+    letter-spacing: -0.06em;
+    text-align: center; 
+    color: #fff;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .mobile {display: none}
   .desktop {display: block;}
+  .logo {float:left; position: relative; left: 0; margin: 0 24px 0 0; padding: 24px; }
+  .nav {height: 72px;}
+  .nav-main {width: auto; float: left; padding: 0; background: none;}
+  .nav-main > li {position: relative;display: block; float: left;}
+  .nav-main > li:hover > a,
+  .nav-main > li > a:hover {background: #fff; color: #ec008c;}
+  .nav-main > li > a {display: block; padding: 14px 24px 10px; color: #fff;}
+  .nav-main > li > a:after {display: none;}
+
+  .nav-main--sub {
+    position: absolute;
+    min-width: 222px;
+    left: -99999px;
+    background: rgb(255, 255, 255);
+    padding: 12px 0;
+  }
+  .nav-main > li:hover > .nav-main--sub {left: 0;}
+
+  .main-header {height: 640px;}
+  .main-content {
+    max-width: 960px;
+    margin: 44px auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 947px){
+    .nav-main > li > a {
+    font-family: "HUGEAvantGardeBold", sans-serif;
+    font-size: 18px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
