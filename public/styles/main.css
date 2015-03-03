@@ -33,6 +33,7 @@ h1 {
   bottom: 0;
   background: rgba(0,0,0,0.5);
 }
+
 .logo {
   width: 50px; 
   height: 24px;
@@ -42,6 +43,7 @@ h1 {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
 }
+
 .logo img {width: 100%;}
 
 .menu {
@@ -65,52 +67,6 @@ h1 {
 .menu.active {left: 80%;}
 .menu.active ~ .logo  {left: 0;}
 
-
-
-/*.menu span {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 4px;
-  background: #fff;
-  margin: 28px 24px 26px 24px;
-}
-
-.menu span:before,
-.menu span:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 4px;
-  background: #fff;
-}
-
-.menu span:before {top: -8px;}
-.menu span:after {bottom: -8px;}
-
-
-
-.menu.active span {background: transparent;
-}
-
-.menu.active span:before, 
-.menu.active span:after {
-  transform-origin: 50% 50%;
-  top:0;
-}
-.menu.active span:before {
-  transform: rotate3d(0,0,1,45deg); 
-}
-
-.menu.active span:after {
-  transform: rotate3d(0,0,-1,45deg); 
-}*/
-
-
-
-
-
 .nav {
   display: block;
   position: relative;
@@ -119,6 +75,18 @@ h1 {
   z-index: 1;
 }
 
+.nav small {
+  position: relative;
+  left: -100%;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 12px;
+  line-height: 48px;
+  margin-left: 24px;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+.nav-main.active + small {left: 0;}
 
 .nav-main {
   display: block;
@@ -131,6 +99,7 @@ h1 {
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
 }
+
 .nav-main.active {left: 0;}
 
 .nav-main a {
@@ -142,9 +111,7 @@ h1 {
   padding: 0 24px;
 }
 
-.nav-main a:hover {
-  background: #eee;
-}
+.nav-main a:hover {background: #eee;}
 
 .nav-main > li > a {
   font-family: "HUGEAvantGardeBold", sans-serif;
@@ -156,12 +123,9 @@ h1 {
   height: 0;
 }
 
-.nav-main--sub a {
-  font-size:  16px
-}
-.nav-main--sub a:hover {
-  color: #ec008c;
-}
+.nav-main--sub a {font-size:  16px}
+
+.nav-main--sub a:hover {color: #ec008c;}
 
 .nav-main--sub-trigger:after {
   content: "";
@@ -172,7 +136,13 @@ h1 {
   float: right;
   margin-top: 18px;
   background: url('/images/arrow.svg') no-repeat;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
 }
+
 .active.nav-main--sub-trigger:after {
   -webkit-transition: all 300ms ease;
   -moz-transition: all 300ms ease;
@@ -191,33 +161,34 @@ h1 {
   height: auto;
   left: 0;
 }
-.main-wrapper {
-  overflow: hidden;
-}
+
+.main-wrapper {overflow: hidden;}
+
 .main {
   position: relative;
   left: 0;
   -webkit-transition: all 325ms ease;
   transition: all 325ms ease;
 }
+
 .main.active {
   position: relative;
   left: 288px;
   -webkit-transition: all 325ms ease;
   transition: all 325ms ease;
 }
+
 .main-header {
   min-height: 260px;
   background: url('/images/background-image.jpg') center no-repeat;
   background-size: cover;
 }
+
 .main-content {
   margin-top: 176px;
   padding: 0 24px;
   font: 14px/24px "Galaxie";
 }
-
-
 
 
 /*=== Desktop Styles ===*/
@@ -248,13 +219,32 @@ h1 {
     padding: 24px; 
   }
   .nav {height: 72px;}
-  .nav-main {width: auto; padding: 0; left: 0;background: none; -webkit-transition: none; transition: none;}
-  .nav-main > li {position: relative;display: block; float: left; left: 0;}
-  .nav-main > li > a {display: block; padding: 14px 24px 10px; color: #fff;}
+  .nav-main {
+    width: auto; 
+    padding: 0; 
+    left: 0;
+    background: none; 
+    -webkit-transition: none; 
+    transition: none;
+  }
+
+  .nav-main > li {
+    position: relative; 
+    display: block; 
+    float: left; 
+    left: 0;
+  }
+  
+  .nav-main > li > a {
+    display: block; 
+    padding: 14px 24px 10px; 
+    color: #fff;
+  }
+
   .nav-main > li > a:hover {background: #fff; color: #ec008c;}
   
-  
   .nav-main > li > a:after {display: none;}
+
   .nav-main--sub {
     position: absolute;
     min-width: 222px;
@@ -264,25 +254,35 @@ h1 {
     -webkit-transition: none;
     transition: none;
   }
-  .nav-main > li > .nav-main--sub-trigger.active {background: white; color: #ec008c;}
-  .nav-main--sub-trigger.active + .nav-main--sub {left: 0; visibility: visible; height: auto;}
-  .main-wrapper {
-    overflow: auto;
+
+  .nav-main > li > .nav-main--sub-trigger.active {
+    background: white; 
+    color: #ec008c;
   }
-  .main {
-    position: inherit;
+  .nav-main--sub-trigger.active + .nav-main--sub {
+    left: 0; 
+    visibility: visible; 
+    height: auto;
   }
+
+  .main-wrapper {overflow: auto;}
+
+  .main {position: inherit;}
+
   .main.active {
     position: inherit;
     left: 0;
   }
+
   .main-header {height: 640px;}
+
   .main-content {
     max-width: 960px;
     margin: 44px auto;
     font: 24px/36px "Galaxie";
   }
 }
+
 @media (min-width: 768px) and (max-width: 947px){
     .nav-main > li > a {
     font-family: "HUGEAvantGardeBold", sans-serif;

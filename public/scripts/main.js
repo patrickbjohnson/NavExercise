@@ -1,42 +1,63 @@
 function navActive(selector, func){
-	// get parent element for nav links
+	// any child event will be captured by parent event listener
 	var parent = document.querySelector(selector);
-	// add event listener to parent since
-	// events bubble up
-	// this means that any event on children
-	// will be captured in this parent event listener
 	parent.addEventListener('click', func, false);
 }
 
-
 // toggles menu dropdowns
 function navToggle(e) {
-    if (e.target !== e.currentTarget) {
-    	 el = document.querySelectorAll('.nav-main--sub-trigger');
-    	 e.target.classList.add('active');
-		 for (var i = 0; i < el.length; i++){
-		 	if (el[i].classList.contains('active')){
-		 		el[i].classList.remove('active');
-		 		e.target.classList.add('active');
-		 	}
-		 }
-    } 
+	if (!e.target.classList.contains('.no-sub', 'menu')){
+		toggleSubNav(e.target, '.nav-main--sub-trigger');
+		toggleOverlay(e.target);
+	}
 }
 
+function toggleSubNav(element, css){
+	if (element.classList.contains("nav-main--sub-trigger")){
+		if (element.classList.contains('active')){
+			  element.classList.remove('active');
+		} else {
+			var j = document.querySelectorAll(css);
+			for (i=0;i<j.length; i++){
+				j[i].classList.remove('active');
+			}
+			element.classList.add('active');
+		}
+	} else {
+		var j = document.querySelectorAll(css);
+		for (i=0;i<j.length; i++){
+			j[i].classList.remove('active');
+		}
+	}
+}
 
-// toggles menu slide out
-// and displays overlay
-var menu = document.getElementById('menu');
-menu.addEventListener('click', function(){
-	document.getElementById('menu').classList.toggle('active');
-	document.getElementById('nav-main').classList.toggle('active');
-	document.getElementById('overlay').classList.toggle('active');
-	document.getElementById('main').classList.toggle('active');
-}, false);
+function toggleOverlay(element) {
+	var o = document.getElementById('overlay');
+	if (element.classList.contains('toggle-overlay')){
+		if (element.classList.contains('active')){
+			o.classList.add('active');
+		} else {
+			o.classList.remove('active');
+		}		
+	} else {
+		o.classList.remove('active');
+	}	
+}
 
-// document.getElementById('Overlay').addEventListener('click', function(){
-// 	this.classList.remove('active');
-// },false);
+document.getElementById('menu').addEventListener('click', toggleMenu, false);
+function toggleMenu(e){
+	if (this.classList.contains('active')){
+		this.classList.remove('active');
+		document.getElementById('nav-main').classList.remove('active');
+		document.getElementById('logo').classList.remove('active');
+		document.getElementById('overlay').classList.remove('active');
+	} else {
+		this.classList.add('active');
+		document.getElementById('nav-main').classList.add('active');
+		document.getElementById('logo').classList.add('active');
+		document.getElementById('overlay').classList.add('active');
+	}
+}
 
 var data = "api/nav.json";
 var xml  = new XMLHttpRequest();
@@ -56,13 +77,11 @@ xml.onreadystatechange = function(){
 				// if items array is empty
 				// then no sub navs and create top level elements
 				if (navitem.items.length == 0) {
-					listitem += '<li><a href="' + navitem.url + '">' + navitem.label + '</a></li>'; 
+					listitem += '<li ><a class="no-sub" href="' + navitem.url + '">' + navitem.label + '</a></li>'; 
 				} 
-				// else, if items array has values
-				// then create the sub navs
-				else if (navitem.items.length > 0) {
+				else {
 					listitem += '<li class="nav-main--sub-parent">';
-					listitem += '<a class="nav-main--sub-trigger" href="' + navitem.url + '">' + navitem.label + '</a>'; 
+					listitem += '<a class="nav-main--sub-trigger toggle-overlay" href="' + navitem.url + '">' + navitem.label + '</a>'; 
 					listitem += '<ul class="nav-main--sub">';
 					for (j = 0; j < navitem.items.length; j++){
 						listitem +=		'<li>';
@@ -79,15 +98,3 @@ xml.onreadystatechange = function(){
 	}
 }
 xml.send();
-
-
-
-function addOverlay(){
-	var overlay = document.getElementById('overlay');
-	overlay.classList.toggle('active');
-}
-
-function toggle(selector){
-	var el = document.getElementById(selector);
-	el.classList.toggle('active');
-}
